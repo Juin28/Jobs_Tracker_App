@@ -28,6 +28,7 @@ function Register() {
   
   const onSubmit = (e) => {
     e.preventDefault();
+
     const { name, email, password, isMember } = values;
     if (!email || !password || (!isMember && !name)) {
       toast.error('Please fill out all fields');
@@ -37,12 +38,14 @@ function Register() {
       dispatch(loginUser({ email: email, password: password }));
       return;
     }
+
     dispatch(registerUser({ name, email, password }));
   };
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember });
   };
+
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -50,6 +53,7 @@ function Register() {
       }, 2000);
     }
   }, [user]);
+  
   return (
     <Wrapper className='full-page'>
       <form className='form' onSubmit={onSubmit}>
